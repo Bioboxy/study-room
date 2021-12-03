@@ -1,0 +1,29 @@
+<H1> HELLO WORLD! </H1>
+
+
+<div>
+	<div style="background-color: #05ae33; margin: 30px 5px">
+		<a href="{% url 'createroom' %}">Click here to create new room</a>
+	</div>
+	<div>
+		{% for room in rooms %}
+			<div>
+				<!--{{room.id}} -- <a href="/room/{{room.id}}/">{{room.name}}</a> -->
+				<a href="{% url 'updateroom' room.id %}"> Edit room </a>
+
+				{{room.id}} -- <a href="{% url 'room' room.id %}">{{room.name}}</a>    <!-- Dynamic url generation based on name-->
+				<div style="background-color: #ae0522">
+					
+				</div>
+				<small>{{room.topic.name}}</small>
+				<small><a href="{% url 'deleteroom' room.id %}" style="margin-right: 10px; margin-left: 10px"> Delete </a> </small>
+				<small style="margin: 0px 15px">Post by <a href="">@{{room.host.username}}</a></small>
+				<hr>
+				
+			</div>
+
+		{%endfor%}
+	</div>
+	
+
+</div>

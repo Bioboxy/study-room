@@ -1,0 +1,20 @@
+{% for room in rooms %}
+<div>
+	<!--{{room.id}} -- <a href="/room/{{room.id}}/">{{room.name}}</a> -->
+	{% if request.user == room.host %}
+	<a href="{% url 'updateroom' room.id %}"> Edit room </a>
+	{% endif %}
+	{{room.id}} -- <a href="{% url 'room' room.id %}">{{room.name}}</a>    <!-- Dynamic url generation based on name-->
+	<div style="background-color: #ae0522">
+		
+	</div>
+	<small>{{room.topic.name}}</small>
+	{% if request.user == room.host %}
+	<small><a href="{% url 'deleteroom' room.id %}" style="margin-right: 10px; margin-left: 10px"> Delete </a> </small>
+	{% endif %}
+	<small style="margin: 0px 15px">Post by <a href="{% url 'profile' room.host.id %}">@{{room.host.username}}</a></small>
+	<hr>
+	
+</div>
+
+{%endfor%}
